@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body onload="displayTodo()">
+    <h1>Todo</h1>
+    <form>
+        <input type="text" placeholder="Input todo here" id="input-todo">
+        <button type="button" onclick="addTodo()">Add</button>
+    </form>
+
+    <div id="list-todo">
+        <!-- <div>
+            <input type="checkbox">
+            <span>Belajar HTML</span>
+            <button type="button">Delete</button>
+        </div> -->
+    </div>
+    <script>
+        function displayTodo() {
+            let todos = JSON.parse(localStorage.getItem("todos")) || []
+            let listTodo = document.querySelector("#list-todo")
+
+            listTodo.innerHTML = ""
+            for (let i = 0; i < todos.length; i++) {
+                let div = document.createElement("div")
+                div.innerHTML = `
+                    <input type="checkbox" ${todos[i].completed == true ? 'checked' : ''} onchange="updateTodo(${todos[i].id})">
+                    <span>${todos[i].name}</span>
+                    <button type="button" onclick="deleteTodo(${todos[i].id})">Delete</button>
+                `
+
+                listTodo.appendChild(div)
+            }
+        }
+
+        /***
+         * {
+         *  id: 2,
+         *  name: "Belajar CSS",
+         *  completed: false
+         * }
+         */
+        function addTodo() {
+            let todos = JSON.parse(localStorage.getItem("todos")) || []
+            let input = document.querySelector("#input-todo")
+            let id = 1
+
+            if (todos.length > 0) {
+                id = todos[todos.length-1].id + 1
+            }
+            todos.push({
+                id: id,
+                name: input.value,
+                completed: false
+            })
+            input.value = ""
+            localStorage.setItem("todos", JSON.stringify(todos))
+            displayTodo()
+        }
+
+        function updateTodo(id) {
+
+            let todos = JSON.parse(localStorage.getItem("todos")) || []
+            for (let i = 0; i < todos.length; i++) {
+                if (todos[i].id == id) {
+                    todos[i].completed = !todos[i].completed
+                }
+            }
+
+            console.log(todos)
+            localStorage.setItem("todos", JSON.stringify(todos))
+
+            displayTodo()
+        }
+
+        function deleteTodo(id) {
+            console.log(id, " <<< id yg dihapus")
+            let todos = JSON.parse(localStorage.getItem("todos")) || []
+            todos = todos.filter(todo => todo.id !== id)
+            localStorage.setItem("todos", JSON.stringify(todos))
+            displayTodo()
+        }
+
+
+    </script>
+</body>
+</html>

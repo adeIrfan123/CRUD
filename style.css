@@ -1,0 +1,9 @@
+#scroll::-webkit-scrollbar {
+  width: 10px;
+}
+#scroll::-webkit-scrollbar-track {
+  @apply bg-pink-500 rounded-lg;
+}
+#scroll::-webkit-scrollbar-thumb {
+  @apply bg-yellow-400 rounded-lg;
+}

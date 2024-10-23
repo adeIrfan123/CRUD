@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .scroll::-webkit-scrollbar {
+          width: 10px;
+        }
+        .scroll::-webkit-scrollbar-track {
+          @apply bg-sky-300 rounded-lg;
+        }
+        .scroll::-webkit-scrollbar-thumb {
+          @apply bg-blue-600 rounded-lg;
+        }
+      }
+    </style>
+  </head>
+  <body onload="displayList()">
+    <div class="container max-w-full min-h-dvh bg-blue-600 flex justify-center">
+      <div class="w-[70%] h-full mt-32 bg-white rounded-lg">
+        <h1 class="text-4xl mt-12 ml-4 font-bold text-blue-600">Task List</h1>
+        <div id="" class="flex justify-between">
+          <div class="w-3/4">
+            <form action="">
+              <input
+                id="inputList"
+                type="text"
+                placeholder="Add Task"
+                class="w-[90%] ml-4 mr-5 mt-8 pl-2 py-2 rounded-lg border-[3px] border-blue-600"
+              />
+            </form>
+          </div>
+          <div
+            onclick="addList()"
+            class="w-28 h-10 mt-8 mr-4 bg-blue-600 flex justify-center rounded-lg cursor-pointer"
+          >
+            <button id="push" type="submit" class="text-white">Add</button>
+          </div>
+        </div>
+
+        <div id="listTask" class="scroll h-56 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <!-- js -->
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- <div class="task mt-8 ml-5">
+            <div class="mb-12 flex items-center justify-between">
+              <form action="" class="flex items-center">
+                <input
+                  type="checkbox"
+                  name="text"
+                  id="taskName"
+                  class="h-5 w-5 mr-5"
+                />
+                <label for="text">
+                  <span class="font-semibold" id=""
+                    >${document.getElementById("newTaskInput").value}</span
+                  >
+                </label>
+              </form>
+              <div
+                class="delete mr-10 w-10 flex justify-center rounded-lg border-2 shadow-lg cursor-pointer"
+              >
+                <i class="ph ph-trash text-xl"></i>
+              </div>
+            </div>
+          </div> -->
